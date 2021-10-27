@@ -1,6 +1,6 @@
 # Andrea's GitHub
 
-Welcome to my Github page! Here is a brief summary of my current research projects:
+Welcome to my Github page! Here is a brief summary of my current research projects.
 
 ***
 

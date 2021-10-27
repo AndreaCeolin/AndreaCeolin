@@ -18,7 +18,7 @@ Classifying languages on the basis on common sounds/words is extremely challengi
 ## Natural Language Processing
 
 ### 1. [Language Identification for low-resource languages](https://aclanthology.org/2021.vardial-1.12/)
-CNNs are the state-of-the-art techniques for classifying images. Can we adapt them to classify similar languages, even when the training data is limited?
+CNNs are the state-of-the-art techniques for classifying images. Can we adapt them to classify similar languages when we have little training data?
 
 ### 2. [Predicting sentiment and editorial behavior on Wikipedia Editor's pages](http://andreaceolin.eu/WikiTalkEdit_naacl.pdf)
 Linguistic features can be used to predict sentiment change, but also to predict persuasion. Can they be used to achieve BOTH tasks simultaneously?

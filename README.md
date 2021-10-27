@@ -9,7 +9,7 @@ The Parametric Comparison Method (Guardiano and Longobardi 2005, Longobardi and 
 Although the model has been judged as inadequate by more recent theoretical research, it proved to be useful for the purposes of language classification and language generation.
 Here is a nice heatmap that shows how much variation we found in a sample of about 70 languages spoken in Eurasia, for which 94 morphosyntactic parameters have been collected:
 
-[[https://www.frontiersin.org/files/Articles/488871/fpsyg-11-488871-HTML-r1/image_m/fpsyg-11-488871-g001.jpg|alt=octocat]]
+![plot](https://www.frontiersin.org/files/Articles/488871/fpsyg-11-488871-HTML-r1/image_m/fpsyg-11-488871-g001.jpg|alt=octocat)
 
 
 ## 2. Functional Load

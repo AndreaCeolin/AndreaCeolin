@@ -24,3 +24,8 @@ CNNs are the state-of-the-art techniques for classifying images. Can we adapt th
 
 ### 4. [Predicting sentiment and editorial behavior on Wikipedia Editor's pages](http://andreaceolin.eu/WikiTalkEdit_naacl.pdf) :handshake:
 Linguistic features can be used to predict sentiment change and persuasion. Can they be used to achieve BOTH tasks simultaneously?
+
+
+***
+
+Picture courtesy of @heavydoodymedia, Malibu Beach (CA). 

@@ -12,7 +12,7 @@ Here is a user-friendly summary of my current research projects.
 New accents are created as a consequence of sound changes. Can we predict which sounds might change in a given language on the basis of their distribution in the lexicon?
 
 ### 2. [The Parametric Comparison Method](https://www.frontiersin.org/articles/10.3389/fpsyg.2020.488871/full) :earth_africa:
-Classifying languages on the basis on common sounds/words is challenging, because sounds and words change very rapidly. Canf we use morphosyntactic features to achieve the task?
+Classifying languages on the basis on common sounds/words is challenging, because sounds and words change very rapidly. Can we use morphosyntactic features to achieve the task?
 
 
 ***

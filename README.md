@@ -28,4 +28,4 @@ Linguistic features can be used to predict sentiment change and persuasion. Can 
 
 ***
 
-Picture courtesy of @heavydoodymedia, Malibu Beach (CA). 
+Profile picture: me in Malibu Beach (CA). Photo credit: @heavydoodymedia.

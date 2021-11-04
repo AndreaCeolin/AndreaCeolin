@@ -8,7 +8,7 @@ Here is a user-friendly summary of my current research projects.
 
 ## Linguistics
 
-### 1. [Functional Load and sound change](https://repository.upenn.edu/pwpl/vol26/iss2/6/) :speaking_head:
+### 1. [Functional Load and sound change](https://andreaceolin.eu/functional_load_TLDR.html) :speaking_head:
 New accents are created as a consequence of sound changes. Can we predict which sounds might change in a language given their distribution in the lexicon?
 
 ### 2. [The Parametric Comparison Method](https://www.frontiersin.org/articles/10.3389/fpsyg.2020.488871/full) :earth_africa:

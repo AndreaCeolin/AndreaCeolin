@@ -1,0 +1,216 @@
+---
+title: "Functional load and sound change"
+output:
+  html_document:
+    df_print: paged
+  pdf_document: default
+  spacing: double
+---
+
+This R Notebook contains a walk-through of my work to predict sound changes. For a written version, see Chapter 3 of [my dissertation](http://andreaceolin.eu/Functionalism_Lexical_Contrast.pdf).
+
+-------------
+
+##1. Introduction
+
+There is a long-term debate in Historical Linguistics on whether sound change can be predicted given the distribution of the sounds in the lexicon. The **Functional Load Hypothesis** [(King 1967)](https://www.jstor.org/stable/pdf/411969.pdf) states that the likelihood of a neutralization (aka merger) between two sounds is (inversely) proportional to how their contrast is *important*  in a language. 
+
+The functional load of a sound pair can be measured by counting the number of word pairs whose distinction rely on that contrast (aka minimal pairs), or by using other measures of informativity, like [entropy loss](http://people.cs.uchicago.edu/~dinoj/fload_bookchapter.pdf).
+
+In my work, I collected a dataset of mergers in different languages to investigate the hypothesis, using corpora from [CHILDES](https://childes.talkbank.org), [CELEX](http://celex.mpi.nl) and other available public repositories. I present an analysis of the dataset here, using the R libraries **tidyverse** and **lme4**.
+
+-------------
+
+##2. The dataset
+
+Here is a quick look at the dataset.
+
+```{r, warning = FALSE, message = FALSE}
+library(tidyverse)
+data = read_csv('fl_data.csv')
+head(data)
+```
+
+There are 116 entries for which the following information is available:
+
+1. **Pair**: the pair of sounds being observed
+2. **Language**: the language in which the pair is found
+3. **Type**: the type of merger that is expected to target the pair
+4. **Merged**: binary variable distinguishing pairs for which a merger is attested in at least one variety of the language ('1') versus pairs for which no merger is reported ('0')
+5. **Enrivonment**: it encodes whether the merger happens across the board ('Unconditioned') or is conditioned on a specific phonetic enrivonment ('Conditioned')
+6. **MinPairs**: amount of minimal pairs found in the conversational corpora examined associated to the pair
+7. **EntropyLoss**: entropy loss expected in the language ater the merger occurs (multiplied by 1000)
+8. **Freq1**: frequency of the first sound of the pair
+9. **Freq2**: frequency of the second sound of the pair
+
+A question we want to ask is whether minimal pairs, entropy loss, or frequency measures are predictors of mergers.
+
+-------------
+
+##3. Transformations
+
+Before proceeding with the analysis, we need to add some variables to the dataset, since they will be useful in the analysis stage.
+
+1. **LogMinPairs**: since the amount of minimal pairs increases exponentially (because once a minimal pair appears in the language, all the words which are homophones with the words involved also yield minimal pairs), we need to log-transform them to adjust the scale
+2. **Max_Freq**: we expect the higher-frequency sound of the pair to be the one more active in the merger process, so we want to know its frequency
+3. **EntropyLoss_scaled** and **Max_Freq_scaled**: we want to normalize both the ```EntropyLoss``` and the ```Max_Freq``` variables
+
+```{r, warning = FALSE, message=FALSE}
+data <- data %>% 
+  mutate(LogMinPairs=log(MinPairs+1)) %>%
+  mutate(Max_freq=pmax(Freq1,Freq2)) %>%
+  group_by(Type) %>%
+  mutate(EntropyLoss_scaled=scale(EntropyLoss)) %>%
+  mutate(Max_Freq_scaled=scale(Max_freq)) 
+
+```
+
+-------------
+
+##4. Analysis
+
+---------------
+
+###4.1 Logistic Regression
+
+A simple way of testing functional load is seeing whether minimal pairs or entropy loss are predictors of mergers. 
+
+Since we are trying to predict a binary variable, we can use logistic regression to address the question, through the ```glm()``` function in R.
+
+---------------
+
+####4.1.1 Minimal Pairs
+
+We can visualize the relationship between minimal pairs and mergers using a boxplot through **ggplot2**, which shows us indeed that the number of minimal pairs for mergers ('1') is lower, on average, than that for sound pairs that do not merge ('0'). 
+
+```{r, warning = FALSE, message=FALSE}
+ggplot(data, aes(x=factor(Merged),y=LogMinPairs))+
+  geom_boxplot() +
+  facet_wrap(~Type) +
+  labs(title="Minimal pairs and mergers", x ="Mergers", y = "LogMinPairs") +
+  theme(plot.title = element_text(hjust = 0.5))
+```
+
+The result is confirmed from a logistic regression analysis:
+
+```{r, warning = FALSE, message=FALSE}
+m1 = glm(Merged ~ LogMinPairs, data=data, family=binomial)
+summary(m1)
+```
+The number of minimal pairs turns out to be slightly significant, with ```z=-2.479``` and ```p=0.0132```. The minus sign is also correct: the presence of minimal pairs *inhibits* mergers.
+
+
+
+---------------
+
+####4.1.2 Entropy
+
+At first sight, the result seems to be similar for entropy, even though there are several case where entropy is actually higher for the sound pairs for which a merger is attested:
+
+
+```{r, warning = FALSE, message=FALSE}
+ggplot(data, aes(x=factor(Merged),y=EntropyLoss_scaled))+
+  geom_boxplot() +
+  facet_wrap(~Type) +
+  labs(title="Entropy and mergers", x ="Mergers", y = "Entropy Loss") +
+  theme(plot.title = element_text(hjust = 0.5))
+```
+
+In fact, if we run a logistic regression analysis, the effect is not significant: we have ```z=-0.518``` and ```p=0.605```.
+
+```{r, warning = FALSE, message=FALSE}
+m2 = glm(Merged ~ EntropyLoss_scaled, data=data, family=binomial)
+summary(m2)
+```
+
+
+---------------
+
+###4.2 Mixed-Effect Logistic Regression
+
+Since a simple logistic regression model does not take into account the fact that the mergers are of very different nature, [Wedel et al. (2013)](https://pubmed.ncbi.nlm.nih.gov/23685207/) propose to use a mixed-effect model to add the merger type as a random effect, in order to account for the fact that different merger types can yield different numbers of minimal pairs and entropy (for instance, vowel and consonant mergers are expected to behave differently). We can replicate their analysis by using the ```glmer()``` function in the **lme4** library.
+
+The authors also argue that the minimal pair effect is independent from frequency, and therefore it stays significant even controlling for ```Max_Freq```. This appears to be true if we run the analysis:
+
+```{r, warning = FALSE, message=FALSE}
+library(lme4)
+m3 = glmer(Merged ~ LogMinPairs + Max_Freq_scaled + (1|Type), family=binomial, data=data)
+summary(m3)
+```
+
+The number of minimal pairs is significant (with ```z=-2.443```, ```p=0.0146```) even when controlling for frequency, and adding merger type as a random effect.
+
+---------------
+
+###4.3 Conditioned and Unconditioned mergers
+
+A generalization that emerges from [my dissertation](http://andreaceolin.eu/Functionalism_Lexical_Contrast.pdf) is that while all mergers which are ```Unconditioned```, aka they happen across the board, are compatible with the Functional Load Hypothesis, ```Conditioned``` mergers seem to often violate the hypothesis. 
+
+---------------
+
+####4.3.1 Unconditioned mergers
+We can visualize this asymmetry by first isolating ```Unconditioned``` mergers, and visualizing them via a boxplot:
+
+```{r, warning = FALSE, message=FALSE}
+
+unconditioned = data %>%
+  filter(Environment == 'Unconditioned')
+
+ggplot(unconditioned, aes(x=factor(Merged),y=LogMinPairs))+
+  geom_boxplot() +
+  facet_wrap(~Type) +
+  labs(title="Minimal pairs and unconditioned mergers", x ="Unconditioned Mergers", y = "LogMinPairs") +
+  theme(plot.title = element_text(hjust = 0.5))
+```
+
+Almost all the cases seem to be compatible with functional load.
+
+This result is confirmed by the fact that in spite of the reduced sample size, the mixed-effect model shows that the ```LogMinPairs``` coefficient is still significant:
+
+```{r, warning = FALSE, message=FALSE}
+m4 = glmer(Merged ~ LogMinPairs + Max_Freq_scaled + (1|Type), family=binomial, data=unconditioned)
+summary(m4)
+```
+
+Even though the statistical power is reduced, the number of minimal pairs is even *more* significant than our previous analysis! We have ```z=-2.953``` and ```p=0.003```.
+
+---------------
+
+####4.3.1 Conditioned mergers
+
+Conversely, a look at the conditioned mergers reveals that none of them show no functional load effect:
+
+```{r, warning = FALSE, message=FALSE}
+
+conditioned = data %>%
+  filter(Environment == 'Conditioned')
+
+ggplot(conditioned, aes(x=factor(Merged),y=LogMinPairs))+
+  geom_boxplot() +
+  facet_wrap(~Type) +
+  labs(title="Minimal pairs and conditioned mergers", x ="Conditioned Mergers", y = "LogMinPairs") +
+  theme(plot.title = element_text(hjust = 0.5))
+```
+
+
+This is confirmed by the mixed-effect analysis, for which the ```LogMinPairs``` coefficient becomes not significant, and is also associated to the opposite sign, which means that, if anything, we are having a *anti-functional load* effect!
+
+```{r, warning = FALSE, message=FALSE}
+m5 = glmer(Merged ~ LogMinPairs + Max_Freq_scaled + (1|Type), family=binomial, data=conditioned)
+summary(m5)
+```
+
+-------------
+
+##5. Conclusions
+
+The analysis shows that functional load is a factor in sound change, but only when the sound changes are **unconditioned**. If the sound change neutralizes a contrast only in a specific environment, functional load does not seem to be a relevant factor.
+
+For more information on the topic, check [my dissertation](http://andreaceolin.eu/Functionalism_Lexical_Contrast.pdf), or this [summary article](https://repository.upenn.edu/pwpl/vol26/iss2/6/) that appeared on PWPL.
+
+-------------
+
+####Notes
+
+######1. Wedel et al.'s model is more complex, and includes a dummy variable that encodes whether minimal pairs can be found at all ('1') or not ('0').
+

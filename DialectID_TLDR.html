@@ -13124,7 +13124,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Load the Drive helper and mount</span>
@@ -13159,7 +13159,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">cd</span> /content/drive/My Drive/Colab Notebooks/RMI-VarDial2021
@@ -13198,7 +13198,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">string</span>
@@ -13252,7 +13252,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">label</span><span class="p">,</span> <span class="n">tweet</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">categories</span><span class="p">[:</span><span class="mi">10</span><span class="p">],</span> <span class="n">sentences</span><span class="p">[:</span><span class="mi">10</span><span class="p">]):</span>
@@ -13297,14 +13297,14 @@ RO rtv   oră  oficial  de pensionare scade pentru mii de români sa votat în
 <p>Notice that all the function words (<em>din</em>, <em>în</em>, <em>de</em>, <em>la</em>, <em>-ul</em>/<em>-le</em> respectively 'from, in, of, at, the') are present in both languages!</p>
 <p>There are also less ambiguous cues: the word <em>sunt</em> 'are' is spelled differently in Moldavian, and so it's a cue for Romanian.</p>
 <h2 id="3.-Preparing-the-dataset-for-evaluation">3. Preparing the dataset for evaluation<a class="anchor-link" href="#3.-Preparing-the-dataset-for-evaluation">&#182;</a></h2><p>The VarDial tasks proposed so far were focused on domain adaptation, and required participants to train their models on a larger corpus that included news article, using the tweets dataset only in the evaluation stage. For simplicity, here we train directly on the tweets corpus.</p>
-<p>Before training classifiers for the task, we divide the dataset in training and test sets using <code>sklearn</code>.</p>
+<p>Before training classifiers for the task, we divide the dataset in training and test sets using <code>scikit-learn</code>.</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="k">import</span> <span class="n">train_test_split</span>
@@ -13329,7 +13329,7 @@ RO rtv   oră  oficial  de pensionare scade pentru mii de români sa votat în
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.feature_extraction.text</span> <span class="k">import</span> <span class="n">CountVectorizer</span>
@@ -13412,7 +13412,7 @@ F1-score: 0.8072512064099062
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
@@ -13465,7 +13465,7 @@ F1-score: 0.8072512064099062
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># this is the CNN network</span>
@@ -13553,7 +13553,7 @@ _________________________________________________________________
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
@@ -13641,7 +13641,7 @@ Epoch 8/8
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># plot training and validation accuracy</span>
@@ -13718,7 +13718,7 @@ Epoch 8/8
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">random</span>
@@ -13754,7 +13754,7 @@ Epoch 8/8
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># fit a character-tokenizer on the texts</span>
@@ -13785,7 +13785,7 @@ Epoch 8/8
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># compile the model</span>
@@ -13861,14 +13861,14 @@ Epoch 8/8
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Here we see validation loss being quite constant after the first epoch (≈0.5), and actually increasing after the 5th epoch, but interestingly it is slightly lower than the validation loss we had in the previous experiment (≈0.6), which predicts an improvement in accuracy.</p>
+<p>Here we see validation loss being quite constant after the first epoch (≈0.5), and actually increasing after the 5th epoch (after which training should be definitely stopped), but interestingly it is slightly lower than the validation loss we had in the previous experiment (≈0.6), which predicts an improvement in accuracy.</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># plot training and validation accuracy</span>
@@ -13926,7 +13926,7 @@ Epoch 8/8
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>In fact, the augmented dataset improves performance to approximately F1=0.81, which is in line with the Naive Bayes classifier performance.</p>
+<p>In fact, the augmented dataset improves performance to approximately F1=0.80, which is in line with the Naive Bayes classifier performance.</p>
 <p>How is it possible??</p>
 <p>The Naive Bayes classifier is trained on a set of 41K n-grams, while the CNN layer uses only 256 filters over character sequences of length 3 (essentially, trigrams).</p>
 <p>Re-training the Naive Bayes classifier on trigrams alone, even if we use all of them, would not match the performance of the CNN.</p>
@@ -13936,7 +13936,7 @@ Epoch 8/8
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#vectorize the training data</span>
@@ -14010,14 +14010,14 @@ F1_score: 0.7662041315834762
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="9.-EXTRAS:-Training-a-vanilla-Feedforward-Neural-Network-for-the-task">9. EXTRAS: Training a vanilla Feedforward Neural Network for the task<a class="anchor-link" href="#9.-EXTRAS:-Training-a-vanilla-Feedforward-Neural-Network-for-the-task">&#182;</a></h1><p>To get the best of the two worlds, we can combine the two approaches by training a simple feed forward neural network: we can use character n-grams as features, and simply add nonlinearity.</p>
+<h1 id="9.-EXTRAS:-Training-a-vanilla-Feedforward-Neural-Network-for-the-task">9. EXTRAS: Training a vanilla Feedforward Neural Network for the task<a class="anchor-link" href="#9.-EXTRAS:-Training-a-vanilla-Feedforward-Neural-Network-for-the-task">&#182;</a></h1><p>To get the best of the two worlds, we can combine the two approaches: we can use character n-grams as features for a simple feed forward neural network to add some nonlinearity. This is the same approach adopted by Google's <a href="https://towardsdatascience.com/introduction-to-googles-compact-language-detector-v3-in-python-b6887101ae47">CLD3</a>.</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[16]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># we define the size of the ngram vocabulary</span>
@@ -14054,7 +14054,7 @@ F1_score: 0.7662041315834762
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[17]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># this is the vanilla network</span>
@@ -14108,7 +14108,7 @@ _________________________________________________________________
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[18]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># compile the model</span>
@@ -14183,7 +14183,7 @@ Epoch 8/8
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[19]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">epochs</span><span class="p">,</span> <span class="n">history</span><span class="o">.</span><span class="n">history</span><span class="p">[</span><span class="s1">&#39;accuracy&#39;</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Training Accuracy&#39;</span><span class="p">)</span>
@@ -14239,7 +14239,7 @@ Epoch 8/8
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>As expected, we obtain a similar accuracy (F1-score: 0.81), but the network is much simpler!</p>
+<p>As expected, we obtain a similar accuracy to the one we had with the CNN (F1-score: 0.80), but with a much simpler network that can be trained in less than a second!</p>
 
 </div>
 </div>

@@ -2,7 +2,7 @@
 
 Welcome to my Github page! :wave:
 
-Here is a user-friendly summary of my current research projects.
+Here is a user-friendly summary of my current research projects. For a list of my published works, check my [website](https://andreaceolin.eu).
 
 ***
 

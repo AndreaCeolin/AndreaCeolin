@@ -15,7 +15,8 @@ CNNs are the state-of-the-art techniques for classifying images. Can we adapt th
 ### 3. [The Parametric Comparison Method](https://www.frontiersin.org/articles/10.3389/fpsyg.2020.488871/full) :earth_africa:
 Classifying languages on the basis on common sounds/words is challenging, because sounds and words change very rapidly. Can we use morphosyntactic features to achieve the task?
 
+### 4. [Predicting sentiment and editorial behavior on Wikipedia Editor's pages](https://aclanthology.org/2021.naacl-main.177/) :handshake:
+ Linguistic features can be used to predict sentiment change and persuasion. Can we use them to achieve BOTH tasks simultaneously?
 
-***
 
 Profile picture taken in Malibu Beach, California. Photo credit: @heavydoodymedia.

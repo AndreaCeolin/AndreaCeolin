@@ -18,5 +18,6 @@ Classifying languages on the basis on common sounds/words is challenging, becaus
 ### 4. [Predicting sentiment and editorial behavior on Wikipedia Editor's pages](https://aclanthology.org/2021.naacl-main.177/) :handshake:
  Linguistic features can be used to predict sentiment change and persuasion. Can we use them to achieve BOTH tasks simultaneously?
 
+***
 
 Profile picture taken in Malibu Beach, California. Photo credit: @heavydoodymedia.
